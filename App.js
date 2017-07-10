@@ -1,14 +1,1 @@
-import React from 'react'
-import { AppRegistry } from 'react-native'
-import { StackNavigator }from 'react-navigation'
-import { HomeScreen, NewDetailsScreen } from './src/screens'
-
-const Home = StackNavigator({
-  Home:       { screen: HomeScreen },
-  NewDetails: { screen: NewDetailsScreen }
-})
-
-AppRegistry.registerComponent('ExpoApp', () => Home)
-
-export default Home
-
+import React from 'react'import { StackNavigator }from 'react-navigation'import { HomeScreen, NewDetailsScreen } from './src/screens'const Home = StackNavigator({  Home:       { screen: HomeScreen, navigationOptions: { header: false } },  NewDetails: { screen: NewDetailsScreen }}, {  initialRouteName: 'Home',  headerMode:       'screen'})export default Home
