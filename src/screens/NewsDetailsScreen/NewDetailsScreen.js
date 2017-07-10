@@ -5,17 +5,12 @@ import styles from '../../styles/styles'
 
 export class NewDetailsScreen extends PureComponent {
   static navigationOptions = {
-    title:            'Details',
-    headerTitleStyle: { textAlign: 'center', alignSelf: 'center' },
-    headerStyle:      {
-      backgroundColor: 'red'
-    }
+    title: 'Details'
   }
 
   state = { isLoad: false }
 
   handleLoad = () => {
-    console.log('on load')
     this.setState({ isLoad: true })
   }
 

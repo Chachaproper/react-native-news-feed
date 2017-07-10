@@ -2,19 +2,12 @@ import React, { PureComponent } from 'react'
 import { View, ActivityIndicator, FlatList } from 'react-native'
 import NewsItem from '../../components/NewsItem/NewsItem'
 import Loader from '../../components/Loader/Loader'
-import styles from '../../styles/styles'
+import styles from './HomeScreenStyles'
 
 const API = 'https://private-23d25c-reactnative.apiary-mock.com'
 const NEWS_PER_PAGE = 4
 
 export class HomeScreen extends PureComponent {
-  static navigationOptions: {
-    title: 'Home',
-    headerTitleStyle: { textAlign: 'center', alignSelf: 'center' },
-    headerStyle: {
-      backgroundColor: 'red',
-    }
-  }
 
   constructor(props) {
     super(props)
