@@ -4,10 +4,12 @@
     "version": "1.0.0",
     "sdkVersion": "18.0.0",
     "ios": {
-      "bundleIdentifier": "com.brainway.expoapp"
+      "bundleIdentifier": "com.brainway.helloapp"
     },
     "android": {
-      "package": "com.brainway.expoapp"
+      "package": "com.brainway.helloapp"
     }
-  }
+  },
+  "name": "HelloApp",
+  "displayName": "HelloApp"
 }
