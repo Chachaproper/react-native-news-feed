@@ -1,7 +1,10 @@
 {
   "presets": [
-    "es2015",
     "react-native"
   ],
-  "compact": true
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ]
 }
