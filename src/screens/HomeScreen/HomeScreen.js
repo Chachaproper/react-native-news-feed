@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { View, ActivityIndicator, FlatList } from 'react-native'
 import NewsItem from '../../components/NewsItem/NewsItem'
 import Loader from '../../components/Loader/Loader'
+import { NEWS_DETAILS } from '../../constants/navigation'
 import styles from './HomeScreenStyles'
 import Layout from '../../components/Layout/Layout'
 
@@ -28,7 +29,7 @@ export class HomeScreen extends Layout {
 
   handleOpenNews = () => {
     const { navigate } = this.props.navigation
-    navigate('NewDetails')
+    navigate(NEWS_DETAILS)
   }
 
   getListFooter = () => {

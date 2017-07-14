@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { WebView, View } from 'react-native'
 import Loader from '../../components/Loader/Loader'
 import styles from '../../styles/styles'
+import Layout from '../../components/Layout/Layout'
 
-export class NewDetailsScreen extends PureComponent {
+export class NewDetailsScreen extends Layout {
   static navigationOptions = {
     title: 'Details'
   }
