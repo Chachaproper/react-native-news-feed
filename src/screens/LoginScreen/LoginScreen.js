@@ -1,25 +1,28 @@
-import React, { PureComponent } from 'react'
-import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native'
+import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
+import Layout from '../../components/Layout/Layout'
 import FormInput from '../../components/FormInput/FormInput'
+import storage from '../../storage'
 import styles from './LoginScreenStyles'
 
 
-@reduxForm({
-  form: 'signInTest'
-})
-export class LoginScreen extends PureComponent {
+@reduxForm({ form: 'signInTest' })
+export class LoginScreen extends Layout {
   handleSubmit = values => {
-    if (values.password !== 'test') throw new SubmissionError({ username: 'User does not exist', _error: 'Login failed!' })
+    if (values.password !== 'test') throw new SubmissionError({
+      username: 'User does not exist',
+      _error:   'Login failed!'
+    })
 
     try {
-      AsyncStorage.setItem('@HelloAppStore:login', 'true')
+      storage.login = '1'
     } catch (error) {
-      console.log('error', error);
+      console.log('error', error)
     }
 
     setTimeout(() => {
-      AsyncStorage.getItem('@HelloAppStore:login')
+      storage.login
         .then(login => {
           this.props.navigation.navigate('News')
         })

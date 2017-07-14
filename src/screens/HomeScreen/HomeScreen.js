@@ -3,12 +3,12 @@ import { View, ActivityIndicator, FlatList } from 'react-native'
 import NewsItem from '../../components/NewsItem/NewsItem'
 import Loader from '../../components/Loader/Loader'
 import styles from './HomeScreenStyles'
+import Layout from '../../components/Layout/Layout'
 
 const API = 'https://private-23d25c-reactnative.apiary-mock.com'
 const NEWS_PER_PAGE = 4
 
-export class HomeScreen extends PureComponent {
-
+export class HomeScreen extends Layout {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,6 +22,7 @@ export class HomeScreen extends PureComponent {
   }
 
   componentDidMount() {
+    super.componentDidMount()
     this.handleGetData()
   }
 
