@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
 import FormInput from '../../components/FormInput/FormInput'
+import styles from './LoginScreenStyles'
 
 
 @reduxForm({
@@ -27,8 +28,8 @@ export class LoginScreen extends PureComponent {
 
   render() {
     return (
-      <View>
-        <Text>Hello login screen</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Sign in</Text>
         <Field
           name={'login'}
           component={FormInput}
@@ -42,7 +43,7 @@ export class LoginScreen extends PureComponent {
           secureTextEntry={true}
         />
         <TouchableOpacity onPress={this.props.handleSubmit(this.handleSubmit)}>
-          <Text>Submit</Text>
+          <Text style={styles.submitBtn}>Submit</Text>
         </TouchableOpacity>
       </View>
     )
