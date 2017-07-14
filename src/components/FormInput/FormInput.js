@@ -17,6 +17,7 @@ export default class FormInput extends PureComponent {
           value={input.value}
           style={styles.input}
           placeholderTextColor="rgba(255, 255, 255, 0.5)"
+          underlineColorAndroid="transparent"
         />
       </View>
     )
