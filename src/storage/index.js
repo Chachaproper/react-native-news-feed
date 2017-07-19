@@ -1,16 +1,26 @@
 import { AsyncStorage } from 'react-native'
-import 'proxy-polyfill'
 
-export const storageName = '@HelloAppStorage'
+export const STORAGE_NAME = '@HelloAppStorage'
 
-const storage = new Proxy(AsyncStorage, {
-  get(target, prop) {
-    console.log(target, prop);
-    return target.getItem(`${storageName}:${prop}`)
-  },
-  set(target, prop, value) {
-    return target.setItem(`${storageName}:${prop}`, value)
+export class Storage {
+  constructor () {
+    this.storageName = STORAGE_NAME
   }
-})
+
+  login (value) {
+    if (value) return this.set('login', value)
+    return this.get('login')
+  }
+
+  get (name) {
+    return AsyncStorage.getItem(`${this.storageName}:${name}`)
+  }
+
+  set (name, value) {
+    return AsyncStorage.setItem(`${this.storageName}:${name}`, value)
+  }
+}
+
+const storage = new Storage()
 
 export default storage
