@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "standard",
+    "standard-react",
+    "plugin:import/errors"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "react/prop-types": "off",
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ]
+  },
+  "settings": {
+    "import/resolver": "webpack"
+  }
+}
