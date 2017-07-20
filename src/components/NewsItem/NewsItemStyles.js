@@ -9,7 +9,8 @@ export default StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
     paddingBottom: 10,
-    marginBottom: 15,
+    marginBottom: 5,
+    marginTop: 5,
     shadowColor: '#000',
     backgroundColor: 'white',
     shadowOffset: { width: 0, height: 50 },
@@ -25,7 +26,10 @@ export default StyleSheet.create({
   },
 
   statusBar: {
-    marginBottom: 15
+    marginTop: 5,
+    marginBottom: 25,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
 
   date: {
@@ -33,7 +37,6 @@ export default StyleSheet.create({
   },
 
   imgContainer: {
-    marginRight: 10
   },
 
   newsImg: {
@@ -41,9 +44,15 @@ export default StyleSheet.create({
     height: 50
   },
 
+  favicon: {
+    width: 16,
+    height: 16,
+    marginRight: 7
+  },
+
   textContainer: {
     flex: 1,
-    paddingLeft: 10,
+    marginRight: 10,
     alignItems: 'center'
   },
 

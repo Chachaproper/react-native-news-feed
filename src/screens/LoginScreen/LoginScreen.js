@@ -7,8 +7,6 @@ import FormInput from '../../components/FormInput/FormInput'
 import storage from '../../storage'
 import styles from './LoginScreenStyles'
 
-storage.login('0')
-
 @reduxForm({ form: 'signInTest' })
 export class LoginScreen extends Layout {
   handleSubmit = values => {
