@@ -26,9 +26,11 @@ function getRandomDate () {
 }
 
 export class HomeScreen extends Layout {
-  handleOpenNews = () => {
-    const { navigate } = this.props.navigation
-    navigate(NEWS_DETAILS)
+  handleOpenNews = (content) => {
+    return () => {
+      const { navigate } = this.props.navigation
+      navigate(NEWS_DETAILS, { content })
+    }
   }
 
   getListFooter = () => {
@@ -118,7 +120,7 @@ export class HomeScreen extends Layout {
           renderItem={({ item }) => (
             <NewsItem
               news={item}
-              onPress={this.handleOpenNews}
+              onPress={this.handleOpenNews(item)}
               onRemove={this.handleRemoveItem(item.id)}
             />
           )}

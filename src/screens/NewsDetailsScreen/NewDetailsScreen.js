@@ -1,7 +1,6 @@
 import React from 'react'
-import { WebView, View } from 'react-native'
-import Loader from '../../components/Loader/Loader'
-import styles from '../../styles/styles'
+import { View, Image, Text } from 'react-native'
+import styles from './NewDetailsScreenStyles'
 import Layout from '../../components/Layout/Layout'
 
 export class NewDetailsScreen extends Layout {
@@ -9,27 +8,15 @@ export class NewDetailsScreen extends Layout {
     title: 'Details'
   }
 
-  state = { isLoad: false }
-
-  handleLoad = () => {
-    this.setState({ isLoad: true })
-  }
-
-  render() {
-    const { isLoad } = this.state
-
+  render () {
+    const { content } = this.props.navigation.state.params
     return (
       <View style={styles.container}>
-        {isLoad ? null : <Loader/>}
-        <WebView
-          source={{ uri: 'https://en.wikipedia.org/wiki/Special:Random' }}
-          style={isLoad ? styles.container : styles.hide}
-          onLoad={this.handleLoad}
-          scalesPageToFit={true}
-          javaScriptEnabled={true}
-          domStorageEnabled={true}
-        >
-        </WebView>
+        <Text style={styles.title}>{content.title}</Text>
+        <View style={styles.content}>
+          <Image source={{ uri: content.img }} style={styles.img} />
+          <Text style={styles.text}>{content.description}</Text>
+        </View>
       </View>
     )
   }
