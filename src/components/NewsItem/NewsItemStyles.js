@@ -2,19 +2,34 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   newsContainer: {
+    paddingHorizontal: 15
+  },
+
+  innerContainer: {
     flex: 1,
-    padding: 10,
-    marginLeft: 15,
-    marginRight: 15,
+    paddingHorizontal: 10,
+    paddingBottom: 10,
     marginBottom: 15,
-    flexDirection: 'row',
-    backgroundColor: 'white',
     shadowColor: '#000',
+    backgroundColor: 'white',
     shadowOffset: { width: 0, height: 50 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 3,
     borderRadius: 2
+  },
+
+  newsBody: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+
+  statusBar: {
+    marginBottom: 15
+  },
+
+  date: {
+    fontSize: 10
   },
 
   imgContainer: {
@@ -34,11 +49,11 @@ export default StyleSheet.create({
 
   text: {
     color: '#5f5f5f',
-    fontSize: 10
+    fontSize: 12
   },
 
   title: {
     color: '#333',
-    fontSize: 13
+    fontSize: 14
   }
 })

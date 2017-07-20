@@ -2,23 +2,27 @@ import { StyleSheet } from 'react-native'
 
 const loginStyles = StyleSheet.create({
   container: {
-    flex:            1,
-    backgroundColor: '#007aff',
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     paddingLeft: 25,
     paddingRight: 25
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 24,
-    color: 'white'
+
+  formContainer: {
+    width: 200
   },
-  submitBtn: {
-    marginTop: 25,
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 16
+
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 30
+  },
+
+  logo: {
+    width: 152,
+    height: 47
   }
+
 })
 
 export default loginStyles
