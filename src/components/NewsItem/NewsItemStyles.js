@@ -29,6 +29,12 @@ export default StyleSheet.create({
     marginTop: 5,
     marginBottom: 25,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+
+  dateContainer: {
+    flexDirection: 'row',
     alignItems: 'center'
   },
 
@@ -36,8 +42,7 @@ export default StyleSheet.create({
     fontSize: 10
   },
 
-  imgContainer: {
-  },
+  imgContainer: {},
 
   newsImg: {
     width: 50,
@@ -48,6 +53,11 @@ export default StyleSheet.create({
     width: 16,
     height: 16,
     marginRight: 7
+  },
+
+  alertButton: {
+    width: 12,
+    height: 12
   },
 
   textContainer: {

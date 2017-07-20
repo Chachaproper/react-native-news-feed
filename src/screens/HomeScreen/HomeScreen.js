@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ActivityIndicator, FlatList } from 'react-native'
+import { View, ActivityIndicator, FlatList, Alert } from 'react-native'
 import NewsItem from '../../components/NewsItem/NewsItem'
 import Loader from '../../components/Loader/Loader'
 import { NEWS_DETAILS } from '../../constants/navigation'
@@ -47,7 +47,6 @@ export class HomeScreen extends Layout {
 
   handleGetData = () => {
     setTimeout(() => {
-
       this.setState({
         isLoad: true,
         refreshing: false,
@@ -90,6 +89,16 @@ export class HomeScreen extends Layout {
     }
   }
 
+  handleShowAlert = () => {
+    return Alert.alert('Hello!', 'Message',
+      [
+        {
+          text: 'Ok',
+          onPress: () => console.log('pressed')
+        }
+      ])
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -122,6 +131,7 @@ export class HomeScreen extends Layout {
               news={item}
               onPress={this.handleOpenNews(item)}
               onRemove={this.handleRemoveItem(item.id)}
+              onShowAlert={this.handleShowAlert}
             />
           )}
           ListFooterComponent={this.getListFooter}

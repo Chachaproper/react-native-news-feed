@@ -30,7 +30,7 @@ export default class NewsItem extends PureComponent {
 
   render () {
     const { rowLeft } = this.state
-    const { news, onPress } = this.props
+    const { news, onPress, onShowAlert } = this.props
 
     const rowStyles = [
       styles.newsContainer,
@@ -64,11 +64,19 @@ export default class NewsItem extends PureComponent {
             <View style={styles.innerContainer}>
 
               <View style={styles.statusBar}>
-                <Image
-                  source={require('../../../assets/Cooladata-logo-57.png')}
-                  style={styles.favicon}
-                />
-                <Text style={styles.date}>{news.date}</Text>
+                <View style={styles.dateContainer}>
+                  <Image
+                    source={require('../../../assets/Cooladata-logo-57.png')}
+                    style={styles.favicon}
+                  />
+                  <Text style={styles.date}>{news.date}</Text>
+                </View>
+                <TouchableOpacity onPress={onShowAlert}>
+                  <Image
+                    source={require('../../../assets/dots.png')}
+                    style={styles.alertButton}
+                  />
+                </TouchableOpacity>
               </View>
 
               <View style={styles.newsBody}>
