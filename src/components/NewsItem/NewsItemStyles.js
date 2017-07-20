@@ -1,13 +1,20 @@
 import { StyleSheet } from 'react-native'
 
-
 export default StyleSheet.create({
   newsContainer: {
-    flex:              1,
-    padding:           15,
-    flexDirection:     'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#e4e4e4'
+    flex: 1,
+    padding: 10,
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 15,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 50 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 3,
+    borderRadius: 2
   },
 
   imgContainer: {
@@ -15,19 +22,23 @@ export default StyleSheet.create({
   },
 
   newsImg: {
-    width:  100,
-    height: 100
+    width: 50,
+    height: 50
   },
 
   textContainer: {
     flex: 1,
-    padding:    10,
+    paddingLeft: 10,
     alignItems: 'center'
   },
 
-  text: {},
+  text: {
+    color: '#5f5f5f',
+    fontSize: 10
+  },
 
   title: {
-    fontSize: 24
+    color: '#333',
+    fontSize: 13
   }
 })

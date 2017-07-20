@@ -10,28 +10,10 @@ const API = 'https://private-23d25c-reactnative.apiary-mock.com'
 const NEWS_PER_PAGE = 4
 
 export class HomeScreen extends Layout {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoad:     false,
-      refreshing: false,
-      data:       [],
-      news:       [],
-      page:       1,
-      totalPages: 0
-    }
-  }
-
-  componentDidMount() {
-    super.componentDidMount()
-    this.handleGetData()
-  }
-
   handleOpenNews = () => {
     const { navigate } = this.props.navigation
     navigate(NEWS_DETAILS)
   }
-
   getListFooter = () => {
     const { page, totalPages } = this.state
 
@@ -41,37 +23,31 @@ export class HomeScreen extends Layout {
       <View
         style={{
           paddingVertical: 20,
-          borderTopWidth:  1,
-          borderColor:     '#CED0CE'
+          borderTopWidth: 1,
+          borderColor: '#CED0CE'
         }}
       >
-        <ActivityIndicator size="large"/>
+        <ActivityIndicator size='large' />
       </View>
     )
   }
-
   handleGetData = () => {
-    return fetch(`${API}/news`)
-      .then(data => data.json())
-      .then(data => {
-        this.setState({
-          isLoad:     true,
-          refreshing: false,
-          data:       data,
-          news:       data.slice(0, NEWS_PER_PAGE),
-          page:       1,
-          totalPages: Math.ceil(data.length / NEWS_PER_PAGE)
-        })
-
-        console.log(data)
+    return fetch(`${API}/news`).then(data => data.json()).then(data => {
+      this.setState({
+        isLoad: true,
+        refreshing: false,
+        data: data,
+        news: data.slice(0, NEWS_PER_PAGE),
+        page: 1,
+        totalPages: Math.ceil(data.length / NEWS_PER_PAGE)
       })
-      .catch(err => console.log(err))
-  }
 
+      console.log(data)
+    }).catch(err => console.log(err))
+  }
   handlerRefresh = () => {
     this.setState({ refreshing: true }, () => this.handleGetData())
   }
-
   handlerLoadMore = () => {
     setTimeout(() => {
       const { totalPages, news, page, data } = this.state
@@ -88,18 +64,50 @@ export class HomeScreen extends Layout {
       })
     }, 3000)
   }
+  handleRemoveItem = id => {
+    return () => {
+      const { data, news } = this.state
+      this.setState({
+        data: data.filter(el => el.id !== id),
+        news: news.filter(el => el.id !== id)
+      })
+    }
+  }
 
-  render() {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isLoad: false,
+      refreshing: false,
+      data: [],
+      news: [],
+      page: 1,
+      totalPages: 0
+    }
+  }
+
+  componentDidMount () {
+    super.componentDidMount()
+    this.handleGetData()
+  }
+
+  render () {
     const { isLoad, news, refreshing } = this.state
 
-    if (!isLoad) return <Loader/>
+    if (!isLoad) return <Loader />
 
     return (
       <View style={styles.container}>
         <FlatList
           data={news}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <NewsItem news={item} onPress={this.handleOpenNews}/> }
+          renderItem={({ item }) => (
+            <NewsItem
+              news={item}
+              onPress={this.handleOpenNews}
+              onRemove={this.handleRemoveItem(item.id)}
+            />
+          )}
           ListFooterComponent={this.getListFooter}
           refreshing={refreshing}
           onRefresh={this.handlerRefresh}

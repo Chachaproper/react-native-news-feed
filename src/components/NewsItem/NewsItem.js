@@ -1,26 +1,79 @@
 import React, { PureComponent } from 'react'
-import { Image, Text, View, TouchableOpacity } from 'react-native'
+import { Image, Text, View, Animated, TouchableOpacity } from 'react-native'
+import Swipeable from 'react-native-swipeable'
 import styles from './NewsItemStyles'
 
+const ANIMATION_DURATION = 250
+const ROW_HEIGHT = 100
 
 export default class NewsItem extends PureComponent {
-  render() {
+  animated = new Animated.Value(0)
+
+  state = { rowLeft: 0 }
+
+  componentDidMount () {
+    Animated.timing(this.animated, {
+      toValue: 1,
+      duration: ANIMATION_DURATION
+    }).start()
+  }
+
+  handlerRemove = () => {
+    const { onRemove } = this.props
+    this.setState({ rowLeft: 1000 }, () => {
+      Animated.timing(this.animated, {
+        toValue: 0,
+        duration: ANIMATION_DURATION
+      }).start(() => onRemove())
+    })
+  }
+
+  render () {
+    const { rowLeft } = this.state
     const { news, onPress } = this.props
 
+    const rowStyles = [
+      styles.newsContainer,
+      {
+        transform: [
+          { scale: this.animated }
+        ]
+      },
+
+      {
+        height: this.animated.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, ROW_HEIGHT],
+          extrapolate: 'clamp'
+        }),
+        left: this.animated.interpolate({
+          inputRange: [0, 1],
+          outputRange: [rowLeft, 0],
+          extrapolate: 'clamp'
+        })
+      }
+    ]
+
     return (
-      <TouchableOpacity onPress={onPress}>
-        <View style={styles.newsContainer}>
-          <View style={styles.imgContainer}>
-            <Image source={{ uri: news.img }} style={styles.newsImg}/>
-          </View>
-          <View style={styles.textContainer}>
-            <View style={styles.text}>
-              <Text style={styles.title}>{news.title}</Text>
-              <Text>{news.description}</Text>
+      <Swipeable
+        leftContent={[]}
+        onLeftActionRelease={this.handlerRemove}
+        onPanAnimatedValueRef={(value) => console.log(value.x)}
+      >
+        <TouchableOpacity onPress={onPress} activeOpacity={1}>
+          <Animated.View style={rowStyles}>
+            <View style={styles.imgContainer}>
+              <Image source={{ uri: news.img }} style={styles.newsImg} />
             </View>
-          </View>
-        </View>
-      </TouchableOpacity>
+            <View style={styles.textContainer}>
+              <View>
+                <Text style={styles.title}>{news.title}</Text>
+                <Text style={styles.text}>{news.description}</Text>
+              </View>
+            </View>
+          </Animated.View>
+        </TouchableOpacity>
+      </Swipeable>
     )
   }
 }
