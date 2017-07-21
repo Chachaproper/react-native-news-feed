@@ -19,6 +19,12 @@ const styles = StyleSheet.create({
     height: 0,
     display: 'none',
     position: 'absolute'
+  },
+
+  headerLogo: {
+    height: 28,
+    width: 90,
+    marginRight: 10
   }
 })
 
