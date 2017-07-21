@@ -63,6 +63,11 @@ export class HomeScreen extends Layout {
   }
 
   handlerLoadMore = () => {
+    const { isEndReached } = this.state
+    if (isEndReached) return
+
+    this.setState({ isEndReached: true })
+
     setTimeout(() => {
       const { totalPages, news, page, data } = this.state
       const nextPage = page + 1
@@ -74,7 +79,8 @@ export class HomeScreen extends Layout {
 
       this.setState({
         news: [...news, ...data.slice(start, end)],
-        page: nextPage
+        page: nextPage,
+        isEndReached: false
       })
     }, 3000)
   }
@@ -107,7 +113,8 @@ export class HomeScreen extends Layout {
       data: [],
       news: [],
       page: 1,
-      totalPages: 0
+      totalPages: 0,
+      isEndReached: false
     }
   }
 
