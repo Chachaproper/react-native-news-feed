@@ -50,6 +50,7 @@ export class HomeScreen extends Layout {
       this.setState({
         isLoad: true,
         refreshing: false,
+        isEndReached: false,
         data: [...newData],
         news: newData.slice(0, NEWS_PER_PAGE),
         page: 1,
@@ -63,8 +64,8 @@ export class HomeScreen extends Layout {
   }
 
   handlerLoadMore = () => {
-    const { isEndReached } = this.state
-    if (isEndReached) return
+    const { isEndReached, refreshing } = this.state
+    if (isEndReached || refreshing) return
 
     this.setState({ isEndReached: true })
 
