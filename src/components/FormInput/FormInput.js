@@ -16,6 +16,7 @@ export default class FormInput extends PureComponent {
         <TextInput
           {...inputProps}
           onChangeText={input.onChange}
+          onSubmitEditing={input.onSubmitEditing}
           onBlur={input.onBlur}
           onFocus={input.onFocus}
           value={input.value}

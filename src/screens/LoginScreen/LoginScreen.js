@@ -1,5 +1,11 @@
 import React from 'react'
-import { View, Button, Image } from 'react-native'
+import {
+  View,
+  Button,
+  Image,
+  Keyboard,
+  TouchableWithoutFeedback
+} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
 import Layout from '../../components/Layout/Layout'
@@ -26,6 +32,7 @@ export class LoginScreen extends Layout {
     setTimeout(() => {
       storage.login().then(() => {
         this.props.navigation.navigate('News')
+        Keyboard.dismiss()
       })
     }, 1000)
   }
@@ -55,12 +62,14 @@ export class LoginScreen extends Layout {
           <Field
             name={'login'}
             component={FormInput}
+            onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
             placeholder='Login'
           />
           <Field
             style={{ marginBottom: 25 }}
             name={'password'}
             component={FormInput}
+            onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
             type='password'
             placeholder='Password'
             secureTextEntry
