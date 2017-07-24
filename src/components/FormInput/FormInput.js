@@ -5,6 +5,7 @@ import styles from './FormInputStyles'
 export default class FormInput extends PureComponent {
   render () {
     const { input, style, meta, ...inputProps } = this.props
+    console.log(this.props);
 
     const newStyles = [
       styles.inputContainer,
@@ -16,7 +17,6 @@ export default class FormInput extends PureComponent {
         <TextInput
           {...inputProps}
           onChangeText={input.onChange}
-          onSubmitEditing={input.onSubmitEditing}
           onBlur={input.onBlur}
           onFocus={input.onFocus}
           value={input.value}
