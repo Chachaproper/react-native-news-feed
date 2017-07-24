@@ -25,6 +25,22 @@ const styles = StyleSheet.create({
     height: 28,
     width: 90,
     marginRight: 10
+  },
+
+  menuBtn: {
+    height: 25,
+    width: 25,
+    marginLeft: 10
+  },
+
+  backBtn: {
+    height: 25,
+    width: 16,
+    marginLeft: 5
+  },
+
+  leftButtons: {
+    flexDirection: 'row'
   }
 })
 
