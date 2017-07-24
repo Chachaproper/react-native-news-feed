@@ -4,7 +4,8 @@ import {
   Button,
   Image,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ScrollView
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
@@ -55,6 +56,7 @@ export class LoginScreen extends Layout {
         style={styles.container}
       >
         <View style={styles.formContainer}>
+          <ScrollView>
           <View style={styles.logoContainer}>
             <Image source={require(
               '../../../assets/logo-white.png')} style={styles.logo} />
@@ -79,6 +81,7 @@ export class LoginScreen extends Layout {
             onPress={this.props.handleSubmit(this.handleSubmit)}
             title='Submit'
           />
+          </ScrollView>
         </View>
       </LinearGradient>
     )
