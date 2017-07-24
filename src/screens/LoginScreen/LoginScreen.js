@@ -4,7 +4,6 @@ import {
   Button,
   Image,
   Keyboard,
-  TouchableWithoutFeedback,
   ScrollView
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
@@ -57,30 +56,30 @@ export class LoginScreen extends Layout {
       >
         <View style={styles.formContainer}>
           <ScrollView>
-          <View style={styles.logoContainer}>
-            <Image source={require(
-              '../../../assets/logo-white.png')} style={styles.logo} />
-          </View>
-          <Field
-            name={'login'}
-            component={FormInput}
-            onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
-            placeholder='Login'
-          />
-          <Field
-            style={{ marginBottom: 25 }}
-            name={'password'}
-            component={FormInput}
-            onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
-            type='password'
-            placeholder='Password'
-            secureTextEntry
-          />
-          <Button
-            color='#6249ca'
-            onPress={this.props.handleSubmit(this.handleSubmit)}
-            title='Submit'
-          />
+            <View style={styles.logoContainer}>
+              <Image source={require(
+                '../../../assets/logo-white.png')} style={styles.logo} />
+            </View>
+            <Field
+              name={'login'}
+              component={FormInput}
+              onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
+              placeholder='Login'
+            />
+            <Field
+              style={{ marginBottom: 25 }}
+              name={'password'}
+              component={FormInput}
+              onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
+              type='password'
+              placeholder='Password'
+              secureTextEntry
+            />
+            <Button
+              color='#6249ca'
+              onPress={this.props.handleSubmit(this.handleSubmit)}
+              title='Submit'
+            />
           </ScrollView>
         </View>
       </LinearGradient>
