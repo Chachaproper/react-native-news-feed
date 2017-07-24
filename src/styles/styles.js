@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
   },
 
   backBtn: {
-    height: 25,
-    width: 16,
-    marginLeft: 5
+    marginLeft: 20,
+    fontSize: 20,
+    fontWeight: 'bold'
   },
 
   leftButtons: {
