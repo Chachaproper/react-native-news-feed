@@ -5,7 +5,6 @@ import styles from './FormInputStyles'
 export default class FormInput extends PureComponent {
   render () {
     const { input, style, meta, ...inputProps } = this.props
-    console.log(this.props);
 
     const newStyles = [
       styles.inputContainer,
