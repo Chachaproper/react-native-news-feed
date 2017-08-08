@@ -12,23 +12,20 @@ const loginStyles = StyleSheet.create({
     flexDirection: 'row'
   },
 
-  img: {
-    width: 100,
-    height: 100,
-    marginRight: 10
-  },
-
-  title: {
-    fontSize: 16,
-    marginBottom: 25,
-    color: '#333'
-  },
-
-  text: {
+  preview: {
     flex: 1,
-    fontSize: 14
-  }
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
 
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
+  }
 })
 
 export default loginStyles
