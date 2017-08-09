@@ -134,7 +134,6 @@ android {
 
 dependencies {
     compile project(':react-native-document-picker')
-    compile project(':react-native-file-picker')
     compile project(':react-native-camera')
     compile project(':react-native-linear-gradient')
     compile fileTree(dir: "libs", include: ["*.jar"])

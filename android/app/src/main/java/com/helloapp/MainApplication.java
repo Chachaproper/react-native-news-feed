@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
-import com.filepicker.FilePickerPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
@@ -28,7 +27,6 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new ReactNativeDocumentPicker(),
-            new FilePickerPackage(),
             new RCTCameraPackage(),
             new LinearGradientPackage()
       );
