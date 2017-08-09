@@ -29,8 +29,9 @@
   "dependencies": {
     "moment": "^2.18.1",
     "react": "16.0.0-alpha.12",
-    "react-native": "^0.47.1",
+    "react-native": "0.46.4",
     "react-native-camera": "^0.10.0",
+    "react-native-document-picker": "^2.0.0",
     "react-native-file-picker": "^0.0.8",
     "react-native-linear-gradient": "^2.1.0",
     "react-native-swipeable": "^0.6.0",

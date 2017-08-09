@@ -1,9 +1,13 @@
 import React from 'react'
 import { View, Text, Image, Button } from 'react-native'
-import styles from './NewDetailsScreenStyles'
 import Camera from 'react-native-camera'
 import FilePickerManager from 'react-native-file-picker'
+import {
+  DocumentPicker,
+  DocumentPickerUtil
+} from 'react-native-document-picker'
 import Layout from '../../components/Layout/Layout'
+import styles from './NewDetailsScreenStyles'
 
 export class NewDetailsScreen extends Layout {
   static navigationOptions = {
@@ -15,18 +19,25 @@ export class NewDetailsScreen extends Layout {
   }
 
   handlePickFile = () => {
-    FilePickerManager.showFilePicker(null, (response) => {
-      console.log('Response = ', response)
+    /*    FilePickerManager.showFilePicker(null, (response) => {
+          console.log('Response = ', response)
 
-      if (response.didCancel) {
-        console.log('User cancelled file picker')
-      } else if (response.error) {
-        console.log('FilePickerManager Error: ', response.error)
-      } else {
-        this.setState({
-          file: response
-        })
-      }
+          if (response.didCancel) {
+            console.log('User cancelled file picker')
+          } else if (response.error) {
+            console.log('FilePickerManager Error: ', response.error)
+          } else {
+            this.setState({
+              file: response
+            })
+          }
+        })*/
+
+    DocumentPicker.show({
+      filetype: [DocumentPickerUtil.allFiles()]
+    }, (err, res) => {
+      if (err) return console.log(err)
+      console.log(res)
     })
   }
 
