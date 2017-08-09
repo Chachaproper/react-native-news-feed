@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, Image, Button } from 'react-native'
 import styles from './NewDetailsScreenStyles'
 import Camera from 'react-native-camera'
+import FilePickerManager from 'react-native-file-picker'
 import Layout from '../../components/Layout/Layout'
 
 export class NewDetailsScreen extends Layout {
@@ -11,6 +12,22 @@ export class NewDetailsScreen extends Layout {
 
   setCameraRef = camera => {
     this.camera = camera
+  }
+
+  handlePickFile = () => {
+    FilePickerManager.showFilePicker(null, (response) => {
+      console.log('Response = ', response)
+
+      if (response.didCancel) {
+        console.log('User cancelled file picker')
+      } else if (response.error) {
+        console.log('FilePickerManager Error: ', response.error)
+      } else {
+        this.setState({
+          file: response
+        })
+      }
+    })
   }
 
   handleTakePicture = () => {
@@ -25,10 +42,13 @@ export class NewDetailsScreen extends Layout {
   handleTakeVideo = () => {
     this.setState({ isVideoRecording: true })
     this.camera.capture({
-      mode: Camera.constants.CaptureMode.video
+      audio: true,
+      mode: Camera.constants.CaptureMode.video,
+      captureTarget: Camera.constants.CaptureTarget.disk
     })
       .then(data => {
         console.log(data)
+        this.handleDisableCamera()
       })
       .catch(err => console.error(err))
   }
@@ -54,6 +74,7 @@ export class NewDetailsScreen extends Layout {
       cameraIsEnabled: false,
       position: null,
       picture: null,
+      file: null,
       isVideoRecording: false
     }
   }
@@ -108,6 +129,10 @@ export class NewDetailsScreen extends Layout {
         <Button
           onPress={this.handleEnableCamera}
           title='Camera'
+        />
+        <Button
+          onPress={this.handlePickFile}
+          title='Pick file'
         />
         <Text style={styles.title}>{position
           ? this.formatPosition

@@ -3,6 +3,7 @@ package com.helloapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.filepicker.FilePickerPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new FilePickerPackage(),
             new RCTCameraPackage(),
             new LinearGradientPackage()
       );
