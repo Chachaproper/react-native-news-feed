@@ -181,8 +181,9 @@ export class FeaturesScreen extends Layout {
         <View style={styles.content}>
           {video ? (
             <Video
-              source={{ uri: video.path }}
+              muted
               ref={this.setPlayerRef}
+              source={{ uri: video.path }}
               style={styles.img}
             />
           ) : (
