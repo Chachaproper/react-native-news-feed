@@ -20,7 +20,6 @@ const loginStyles = StyleSheet.create({
 
   title: {
     fontSize: 16,
-    marginTop: 20,
     marginBottom: 25,
     color: '#333'
   },
@@ -28,19 +27,8 @@ const loginStyles = StyleSheet.create({
   text: {
     flex: 1,
     fontSize: 14
-  },
-
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
-  },
-
-  cameraToolbar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 10
   }
+
 })
 
 export default loginStyles
