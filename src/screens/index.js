@@ -1,4 +1,5 @@
 export { HomeScreen } from './HomeScreen/HomeScreen'
 export { NewDetailsScreen } from './NewsDetailsScreen/NewDetailsScreen'
+export { FeaturesScreen } from './FeaturesScreen/FeaturesScreen'
 export { LoginScreen } from './LoginScreen/LoginScreen'
 export { LogoutScreen } from './LogoutScreen/LogoutScreen'
