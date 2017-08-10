@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Image, Button } from 'react-native'
 import Camera from 'react-native-camera'
+import Video from 'react-native-video'
 import {
   DocumentPicker,
   DocumentPickerUtil
@@ -17,19 +18,23 @@ export class FeaturesScreen extends Layout {
     this.camera = camera
   }
 
+  setPlayerRef = player => {
+    this.player = player
+  }
+
   handlePickFile = () => {
     DocumentPicker.show({
       filetype: [DocumentPickerUtil.allFiles()]
     }, (err, res) => {
-      if (err) return console.log(err)
-      console.log(res)
+      if (err) return this.setState({ fileError: err })
+      this.setState({ fileError: null, file: res })
     })
   }
 
   handleTakePicture = () => {
     this.camera.capture()
       .then(data => {
-        this.setState({ cameraIsEnabled: false, picture: data })
+        this.setState({ picture: data, video: null })
         this.handleDisableCamera()
       })
       .catch(err => console.error(err))
@@ -44,6 +49,7 @@ export class FeaturesScreen extends Layout {
     })
       .then(data => {
         console.log(data)
+        this.setState({ video: data, picture: null })
         this.handleDisableCamera()
       })
       .catch(err => console.error(err))
@@ -66,13 +72,16 @@ export class FeaturesScreen extends Layout {
   constructor (props) {
     super(props)
     this.camera = null
+    this.player = null
     this.watchId = null
     this.state = {
       cameraIsEnabled: false,
       positionError: null,
       position: null,
       picture: null,
+      video: null,
       file: null,
+      fileError: null,
       isVideoRecording: false
     }
   }
@@ -109,6 +118,9 @@ export class FeaturesScreen extends Layout {
       cameraIsEnabled,
       position,
       picture,
+      video,
+      file,
+      fileError,
       isVideoRecording,
       positionError
     } = this.state
@@ -141,28 +153,49 @@ export class FeaturesScreen extends Layout {
       )
     }
 
+    console.log(fileError, file)
+
     return (
       <View style={styles.container}>
         <Button
           onPress={this.handleEnableCamera}
           title='Camera'
         />
+
+        <Text />
+
         <Button
           onPress={this.handlePickFile}
           title='Pick file'
         />
+
         <Text style={styles.title}>
           {positionError || position ? this.formatPosition : 'Geolocation...'}
         </Text>
+
+        {fileError || file ? (
+          <Text style={styles.title}>
+            {fileError || file ? file.fileName : ''}
+          </Text>
+        ) : null}
         <View style={styles.content}>
-          <Image
-            style={styles.img}
-            source={{
-              uri: picture
-                ? picture.path
-                : 'https://perspektiva-inva.ru/userfiles/kinofest_juri/no-photo.jpg'
-            }}
-          />
+          {video ? (
+            <Video
+              source={{ uri: video.path }}
+              ref={this.setPlayerRef}
+              style={styles.img}
+            />
+          ) : (
+            <Image
+              style={styles.img}
+              source={{
+                uri: picture
+                  ? picture.path
+                  : 'https://perspektiva-inva.ru/userfiles/kinofest_juri/no-photo.jpg'
+              }}
+            />
+          )}
+
         </View>
       </View>
     )

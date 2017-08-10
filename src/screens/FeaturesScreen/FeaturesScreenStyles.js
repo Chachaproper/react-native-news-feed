@@ -25,8 +25,8 @@ const loginStyles = StyleSheet.create({
 
   title: {
     fontSize: 16,
-    marginTop: 20,
-    marginBottom: 25,
+    marginTop: 10,
+    marginBottom: 10,
     color: '#333'
   },
 
