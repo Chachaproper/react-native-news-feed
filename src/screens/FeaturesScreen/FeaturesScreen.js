@@ -10,10 +10,6 @@ import Layout from '../../components/Layout/Layout'
 import styles from './FeaturesScreenStyles'
 
 export class FeaturesScreen extends Layout {
-  static navigationOptions = {
-    title: 'Features'
-  }
-
   setCameraRef = camera => {
     this.camera = camera
   }
@@ -152,8 +148,6 @@ export class FeaturesScreen extends Layout {
         </View>
       )
     }
-
-    console.log(fileError, file)
 
     return (
       <View style={styles.container}>
