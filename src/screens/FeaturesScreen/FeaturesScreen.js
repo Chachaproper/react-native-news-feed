@@ -167,9 +167,9 @@ export class FeaturesScreen extends Layout {
           {positionError || position ? this.formatPosition : 'Geolocation...'}
         </Text>
 
-        {fileError || file ? (
+        {(fileError || file) ? (
           <Text style={styles.title}>
-            {fileError || file ? file.fileName : ''}
+            {fileError || (file ? file.fileName : '')}
           </Text>
         ) : null}
         <View style={styles.content}>
