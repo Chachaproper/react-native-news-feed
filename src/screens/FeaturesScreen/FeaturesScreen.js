@@ -22,7 +22,7 @@ export class FeaturesScreen extends Layout {
     DocumentPicker.show({
       filetype: [DocumentPickerUtil.allFiles()]
     }, (err, res) => {
-      if (err) return this.setState({ fileError: err })
+      if (err) return this.setState({ fileError: err, file: null })
       this.setState({ fileError: null, file: res })
     })
   }
