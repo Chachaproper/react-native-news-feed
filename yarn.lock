@@ -4275,6 +4275,10 @@ react-devtools-core@2.3.1:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-audio@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-audio/-/react-native-audio-3.2.2.tgz#0fcbda338c9cc85aabed595f9c762fa6eebbdb88"
+
 react-native-camera@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.10.0.tgz#5d973c9a8aab95f68aede395ba310eae0c3cecdd"
@@ -4306,6 +4310,10 @@ react-native-linear-gradient@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.2.0.tgz#7d9ff9fc3e413079cf3c7354873eaf923145364d"
   dependencies:
     prop-types "^15.5.10"
+
+react-native-sound@^0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.10.3.tgz#0faf4f101d46c51315c91d701783c0c6a4db3bf6"
 
 react-native-swipeable@^0.6.0:
   version "0.6.0"
