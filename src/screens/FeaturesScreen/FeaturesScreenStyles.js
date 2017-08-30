@@ -41,6 +41,36 @@ const loginStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10
+  },
+
+  controls: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+
+  progressText: {
+    paddingTop: 10,
+    fontSize: 16,
+    color: '#fff'
+  },
+
+  button: {
+    padding: 5,
+    backgroundColor: 'gray'
+  },
+
+  disabledButtonText: {
+    color: '#eee'
+  },
+
+  buttonText: {
+    fontSize: 16,
+    color: '#fff'
+  },
+
+  activeButtonText: {
+    fontSize: 16,
+    color: '#B81F00'
   }
 })
 
