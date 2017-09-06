@@ -27,6 +27,7 @@
     "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "dependencies": {
+    "firebase": "^4.3.0",
     "moment": "^2.18.1",
     "react": "16.0.0-alpha.12",
     "react-native": "0.46.4",
