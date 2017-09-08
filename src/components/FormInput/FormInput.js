@@ -18,7 +18,7 @@ export default class FormInput extends PureComponent {
           onChangeText={input.onChange}
           onBlur={input.onBlur}
           onFocus={input.onFocus}
-          value={input.value}
+          value={input.value || inputProps.defaultValue}
           style={styles.input}
           placeholderTextColor='rgba(255, 255, 255, 0.5)'
           underlineColorAndroid='transparent'

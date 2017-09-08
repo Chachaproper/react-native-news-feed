@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Image, Text, View, Animated, TouchableOpacity } from 'react-native'
+import { Text, View, Animated, TouchableOpacity } from 'react-native'
 import Swipeable from 'react-native-swipeable'
 import styles from './NewsItemStyles'
 
@@ -30,7 +30,7 @@ export default class NewsItem extends PureComponent {
 
   render () {
     const { rowLeft } = this.state
-    const { news, onPress, onShowAlert } = this.props
+    const { news, onPress } = this.props
 
     const rowStyles = [
       styles.newsContainer,
@@ -62,38 +62,16 @@ export default class NewsItem extends PureComponent {
         <TouchableOpacity onPress={onPress} activeOpacity={1}>
           <Animated.View style={rowStyles}>
             <View style={styles.innerContainer}>
-
-              <View style={styles.statusBar}>
-                <View style={styles.dateContainer}>
-                  <Image
-                    source={require('../../../assets/Cooladata-logo-57.png')}
-                    style={styles.favicon}
-                  />
-                  <Text style={styles.date}>{news.date}</Text>
-                </View>
-                <TouchableOpacity onPress={onShowAlert}>
-                  <Image
-                    source={require('../../../assets/dots.png')}
-                    style={styles.alertButton}
-                  />
-                </TouchableOpacity>
-              </View>
-
               <View style={styles.newsBody}>
-
                 <View style={styles.textContainer}>
                   <View>
-                    <Text style={styles.title}>{news.title}</Text>
+                    <Text style={styles.title}>{news.name}</Text>
                     <Text
                       style={styles.text}
                       ellipsizeMode='tail'
                       numberOfLines={3}
                     >{news.description}</Text>
                   </View>
-                </View>
-
-                <View style={styles.imgContainer}>
-                  <Image source={{ uri: news.img }} style={styles.newsImg} />
                 </View>
               </View>
             </View>

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import { NavigationActions } from 'react-navigation'
 import { reducer as form } from 'redux-form'
+import { auth } from './auth'
+import { notes } from './data'
 
-
-const AppReducer = combineReducers({ form })
+const AppReducer = combineReducers({ form, auth, notes })
 
 export default AppReducer

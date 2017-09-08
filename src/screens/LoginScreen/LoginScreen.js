@@ -2,39 +2,40 @@ import React from 'react'
 import {
   View,
   Button,
-  Image,
   Keyboard,
   ScrollView
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import { connect } from 'react-redux'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
 import Layout from '../../components/Layout/Layout'
 import FormInput from '../../components/FormInput/FormInput'
 import storage from '../../storage'
+import { auth } from '../../redux/actions/auth'
 import styles from './LoginScreenStyles'
 
+@connect(() => ({}))
 @reduxForm({ form: 'signInTest' })
 export class LoginScreen extends Layout {
-  handleSubmit = values => {
-    if (values.password !== 'test') {
+  handleSubmit = ({ login, password }) => {
+    if (!password || !login) {
       throw new SubmissionError({
         username: 'User does not exist',
         _error: 'Login failed!'
       })
     }
 
-    try {
-      storage.login('1')
-    } catch (error) {
-      console.log('error', error)
-    }
+    this.props.dispatch(auth({ email: login, password }))
+      .then(() => {
+        try {
+          storage.login('1')
+        } catch (error) {
+          return console.log('error', error)
+        }
 
-    setTimeout(() => {
-      storage.login().then(() => {
         this.props.navigation.navigate('News')
         Keyboard.dismiss()
       })
-    }, 1000)
   }
 
   render () {
@@ -56,10 +57,6 @@ export class LoginScreen extends Layout {
       >
         <View style={styles.formContainer}>
           <ScrollView>
-            <View style={styles.logoContainer}>
-              <Image source={require(
-                '../../../assets/logo-white.png')} style={styles.logo} />
-            </View>
             <Field
               name={'login'}
               component={FormInput}

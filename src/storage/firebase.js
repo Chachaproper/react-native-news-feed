@@ -9,15 +9,17 @@ export const config = {
   messagingSenderId: '752992849544'
 }
 
-export const firebaseApp = firebase.initializeApp(config)
-export const database = firebaseApp.database()
-const dbRefObject = database.ref().child('object')
-const dbRefList = dbRefObject.child('users')
+export class Db {
+  constructor (config) {
+    this.config = config
+    this.firebaseApp = firebase.initializeApp(config)
+    this.auth = firebase.auth()
+    this.db = this.firebaseApp.database()
+    this.refs = {
+      journals: this.db.ref('journals'),
+      notes: this.db.ref('notes')
+    }
+  }
+}
 
-dbRefObject.on('value', snap => {
-  console.log('value', snap.val())
-})
-
-dbRefList.on('child_added', snap => {
-  console.log('child', snap.val())
-})
+export default new Db(config)

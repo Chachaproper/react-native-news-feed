@@ -63,6 +63,8 @@ export default StyleSheet.create({
   textContainer: {
     flex: 1,
     marginRight: 10,
+    marginTop: 15,
+    marginBottom: 15,
     alignItems: 'center'
   },
 
