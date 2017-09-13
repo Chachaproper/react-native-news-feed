@@ -7,9 +7,9 @@ export class Storage {
     this.storageName = STORAGE_NAME
   }
 
-  login (value) {
-    if (value) return this.set('login', value)
-    return this.get('login')
+  user (value) {
+    if (value) return this.set('user', JSON.stringify(value))
+    return this.get('user')
   }
 
   get (name) {
@@ -18,6 +18,10 @@ export class Storage {
 
   set (name, value) {
     return AsyncStorage.setItem(`${this.storageName}:${name}`, value)
+  }
+
+  remove (name) {
+    return AsyncStorage.removeItem(`${this.storageName}:${name}`)
   }
 }
 

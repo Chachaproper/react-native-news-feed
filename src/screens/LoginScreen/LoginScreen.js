@@ -26,9 +26,9 @@ export class LoginScreen extends Layout {
     }
 
     this.props.dispatch(auth({ email: login, password }))
-      .then(() => {
+      .then(user => {
         try {
-          storage.login('1')
+          storage.user(user)
         } catch (error) {
           return console.log('error', error)
         }
