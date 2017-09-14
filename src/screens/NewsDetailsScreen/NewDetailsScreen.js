@@ -9,11 +9,13 @@ import db from '../../storage/firebase'
 import styles from './NewDetailsScreenStyles'
 
 @connect((state, ownProps) => {
+  const { params } = ownProps.navigation.state
+  const content = params ? params.content : null
   return {
     user: state.auth.user,
     initialValues: {
-      name: ownProps.navigation.state.params.content.name,
-      description: ownProps.navigation.state.params.content.description
+      name: content ? content.name : '',
+      description: content ? content.description : ''
     }
   }
 })
@@ -47,7 +49,7 @@ export class NewDetailsScreen extends PureComponent {
       db.refs.notes.child(content._id).set({ name, description })
     } else {
       const newNoteRef = db.refs.notes.push({ name, description })
-      db.refs.journals.child(user.uid).set({ [newNoteRef.key]: true })
+      db.refs.journals.child(user.uid).child(newNoteRef.key).set(true)
     }
 
     navigation.goBack()
@@ -59,9 +61,6 @@ export class NewDetailsScreen extends PureComponent {
   }
 
   render () {
-    const { content } = this.props.navigation.state.params
-    let resultContent = content || {}
-
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -75,7 +74,6 @@ export class NewDetailsScreen extends PureComponent {
             component={FormInput}
             onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
             placeholder='Title'
-            defaultValue={resultContent.name || ''}
           />
           <Field
             style={{
@@ -85,7 +83,6 @@ export class NewDetailsScreen extends PureComponent {
             component={FormInput}
             onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
             placeholder='Your content'
-            defaultValue={resultContent.description || ''}
           />
         </ScrollView>
       </View>

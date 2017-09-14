@@ -25,6 +25,8 @@ export class HomeScreen extends Layout {
     }
   }
 
+  handleCreateNote = () => this.props.navigation.navigate(NEWS_DETAILS)
+
   render () {
     const { notes } = this.props
 
@@ -45,6 +47,7 @@ export class HomeScreen extends Layout {
           raised
           reverse
           containerStyle={styles.addNewBtn}
+          onPress={this.handleCreateNote}
           name='add'
           color='#18BB49'
         />
