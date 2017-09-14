@@ -28,15 +28,15 @@ const styles = StyleSheet.create({
   },
 
   menuBtn: {
-    height: 25,
-    width: 25,
-    marginLeft: 10
+    marginLeft: 10,
+    fontSize: 25,
+    color: '#999'
   },
 
   backBtn: {
-    marginLeft: 20,
-    fontSize: 20,
-    fontWeight: 'bold'
+    marginLeft: 15,
+    fontSize: 40,
+    color: '#999'
   },
 
   leftButtons: {
