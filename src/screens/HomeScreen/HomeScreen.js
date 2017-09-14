@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, FlatList } from 'react-native'
+import { Icon } from 'react-native-elements'
 import NewsItem from '../../components/NewsItem/NewsItem'
 import { NEWS_DETAILS } from '../../constants/navigation'
 import styles from './HomeScreenStyles'
@@ -39,6 +40,13 @@ export class HomeScreen extends Layout {
               onRemove={this.handleRemoveItem(item._id)}
             />
           )}
+        />
+        <Icon
+          raised
+          reverse
+          containerStyle={styles.addNewBtn}
+          name='add'
+          color='#18BB49'
         />
       </View>
     )
