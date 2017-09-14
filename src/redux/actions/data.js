@@ -1,5 +1,5 @@
 import db from '../../storage/firebase'
-import { SYNC_FIREBASE, ADD_NOTE, REMOVE_NOTE } from '../constants/data'
+import { SYNC_FIREBASE, UPDATE_NOTES, REMOVE_NOTE } from '../constants/data'
 import { LOGOUT } from '../constants/auth'
 
 export function syncFirebase () {
@@ -10,9 +10,15 @@ export function syncFirebase () {
       .on('child_added', journalSnap => {
         return db.refs.notes.child(journalSnap.key).on('value', noteSnap => {
           if (!noteSnap.val()) return
+
+          let notes = [...getState().notes]
+          const newNote = { _id: noteSnap.key, ...noteSnap.val() }
+          const oldNoteIndex = notes.findIndex(n => n._id === newNote._id)
+          if (~oldNoteIndex) notes[oldNoteIndex] = newNote
+          else notes = [newNote, ...notes]
           return dispatch({
-            type: ADD_NOTE,
-            payload: { _id: noteSnap.key, ...noteSnap.val() }
+            type: UPDATE_NOTES,
+            payload: notes
           })
         })
       })
