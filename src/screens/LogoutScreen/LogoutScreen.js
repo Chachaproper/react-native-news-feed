@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { AsyncStorage } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import storage from '../../storage'
 import { LOGIN } from '../../constants/navigation'
@@ -14,7 +15,11 @@ export class LogoutScreen extends PureComponent {
       storage.remove('user')
         .then(() => {
           dispatch({ type: LOGOUT })
-          navigation.navigate(LOGIN)
+          const resetAction = NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: LOGIN })]
+          })
+          navigation.dispatch(resetAction)
         })
         .catch((err) => console.log('err', err))
     })

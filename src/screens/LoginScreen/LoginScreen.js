@@ -8,6 +8,7 @@ import {
   Keyboard,
   ScrollView
 } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
 import Layout from '../../components/Layout/Layout'
@@ -15,6 +16,7 @@ import FormInput from '../../components/FormInput/FormInput'
 import storage from '../../storage'
 import { auth } from '../../redux/actions/auth'
 import styles from './LoginScreenStyles'
+import { LOGIN, NEWS } from '../../constants/navigation'
 
 @connect(() => ({}))
 @reduxForm({ form: 'signInTest' })
@@ -30,8 +32,13 @@ export class LoginScreen extends Layout {
           return console.log('error', error)
         }
 
-        this.props.navigation.navigate('News')
         Keyboard.dismiss()
+
+        const resetAction = NavigationActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: NEWS })]
+        })
+        this.props.navigation.dispatch(resetAction)
       })
       .catch(err => {
         return Alert.alert('Auth error', err.message,

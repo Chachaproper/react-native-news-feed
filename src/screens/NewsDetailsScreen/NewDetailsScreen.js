@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { View, Button } from 'react-native'
+import moment from 'moment'
+import { View, Button, Text } from 'react-native'
 import FormInput from '../../components/FormInput/FormInput'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
 import db from '../../storage/firebase'
@@ -42,20 +43,28 @@ export class NewDetailsScreen extends PureComponent {
 
     return (
       <View style={styles.container}>
+        <Text>{moment().format('MM/DD/YYYY h:mm a')}</Text>
         <Field
-          style={{ backgroundColor: '#777' }}
+          style={{
+            borderWidth: 0,
+            borderColor: 'transparent'
+          }}
           name={'name'}
           component={FormInput}
           onSubmitEditing={handleSubmit(this.handleSubmit)}
-          placeholder='Name'
+          placeholder='Title'
           defaultValue={resultContent.name || ''}
         />
         <Field
-          style={{ marginBottom: 25, backgroundColor: '#777' }}
+          style={{
+            marginBottom: 25
+          }}
           name={'description'}
           component={FormInput}
           onSubmitEditing={handleSubmit(this.handleSubmit)}
-          placeholder='Description'
+          placeholder='Your content'
+          multiline
+          numberOfLines={10}
           defaultValue={resultContent.description || ''}
         />
         <Button
