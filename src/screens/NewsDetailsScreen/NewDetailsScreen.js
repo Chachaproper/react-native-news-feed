@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { View, Button, Text, ScrollView } from 'react-native'
+import { Button } from 'react-native-elements'
+import { View, Text, ScrollView } from 'react-native'
 import FormInput from '../../components/FormInput/FormInput'
 import { reduxForm, Field } from 'redux-form'
 import db from '../../storage/firebase'
@@ -20,8 +21,20 @@ import styles from './NewDetailsScreenStyles'
   form: 'note'
 })
 export class NewDetailsScreen extends PureComponent {
-  static navigationOptions = {
-    title: 'Note'
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state
+    return {
+      title: 'Note',
+      headerRight: (
+        <Button
+          title='Save'
+          color='#999'
+          fontSize={20}
+          backgroundColor='transparent'
+          onPress={() => params.handleSubmit()}
+        />
+      )
+    }
   }
 
   handleSubmit = ({ name, description }) => {
@@ -38,6 +51,11 @@ export class NewDetailsScreen extends PureComponent {
     }
 
     navigation.goBack()
+  }
+
+  componentDidMount () {
+    this.props.navigation.setParams(
+      { handleSubmit: this.props.handleSubmit(this.handleSubmit) })
   }
 
   render () {
@@ -68,10 +86,6 @@ export class NewDetailsScreen extends PureComponent {
             onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
             placeholder='Your content'
             defaultValue={resultContent.description || ''}
-          />
-          <Button
-            onPress={this.props.handleSubmit(this.handleSubmit)}
-            title='Submit'
           />
         </ScrollView>
       </View>
