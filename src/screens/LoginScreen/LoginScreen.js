@@ -2,10 +2,11 @@ import React from 'react'
 import {
   View,
   Button,
+  Image,
+  Text,
   Keyboard,
   ScrollView
 } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
 import Layout from '../../components/Layout/Layout'
@@ -40,28 +41,21 @@ export class LoginScreen extends Layout {
 
   render () {
     return (
-      <LinearGradient
-        colors={[
-          '#009fb1',
-          '#01a0b1',
-          '#07a1b1',
-          '#09a2b0',
-          '#0ca2b0',
-          '#16a5b0',
-          '#17a6b0',
-          '#35afae',
-          '#3db4ad',
-          '#71cba8'
-        ]}
-        style={styles.container}
-      >
+      <View style={styles.container}>
         <View style={styles.formContainer}>
           <ScrollView>
+            <View style={styles.logoContainer}>
+              <Image
+                source={require('../../../assets/logo.png')}
+                style={styles.logo}
+              />
+            </View>
+            <Text style={styles.title}>Sign in</Text>
             <Field
               name={'login'}
               component={FormInput}
               onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
-              placeholder='Login'
+              placeholder='Email'
             />
             <Field
               style={{ marginBottom: 25 }}
@@ -73,13 +67,12 @@ export class LoginScreen extends Layout {
               secureTextEntry
             />
             <Button
-              color='#6249ca'
               onPress={this.props.handleSubmit(this.handleSubmit)}
               title='Submit'
             />
           </ScrollView>
         </View>
-      </LinearGradient>
+      </View>
     )
   }
 }

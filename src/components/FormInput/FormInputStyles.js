@@ -2,13 +2,12 @@ import { StyleSheet } from 'react-native'
 
 const inputStyles = StyleSheet.create({
   input: {
-    height: 30,
-    padding: 5,
-    color: 'white'
+    height: 35,
+    padding: 10
   },
   inputContainer: {
-    borderBottomWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
+    borderWidth: 1,
+    borderColor: '#cfd7dd',
     marginTop: 20
   },
   valid: {

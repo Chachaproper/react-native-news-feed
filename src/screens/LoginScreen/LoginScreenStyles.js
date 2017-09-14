@@ -6,23 +6,28 @@ const loginStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: 25,
-    paddingRight: 25
+    paddingRight: 25,
+    backgroundColor: 'white'
   },
 
   formContainer: {
-    width: 200
+    width: 250
   },
 
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 30
+    marginBottom: 40
   },
 
   logo: {
-    width: 152,
-    height: 47
-  }
+    width: 150,
+    height: 112
+  },
 
+  title: {
+    fontSize: 18,
+    textAlign: 'center'
+  }
 })
 
 export default loginStyles

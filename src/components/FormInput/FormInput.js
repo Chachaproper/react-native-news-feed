@@ -20,7 +20,7 @@ export default class FormInput extends PureComponent {
           onFocus={input.onFocus}
           value={input.value || inputProps.defaultValue}
           style={styles.input}
-          placeholderTextColor='rgba(255, 255, 255, 0.5)'
+          placeholderTextColor='rgba(0, 0, 0, 0.3)'
           underlineColorAndroid='transparent'
         />
       </View>
