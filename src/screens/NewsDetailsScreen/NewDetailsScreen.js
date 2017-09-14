@@ -44,11 +44,12 @@ export class NewDetailsScreen extends PureComponent {
 
     const { user, navigation } = this.props
     const { content } = navigation.state.params
+    const timestamp = content ? content.timestamp : new Date().getTime()
 
     if (content && content._id) {
-      db.refs.notes.child(content._id).set({ name, description })
+      db.refs.notes.child(content._id).set({ timestamp, name, description })
     } else {
-      const newNoteRef = db.refs.notes.push({ name, description })
+      const newNoteRef = db.refs.notes.push({ timestamp, name, description })
       db.refs.journals.child(user.uid).child(newNoteRef.key).set(true)
     }
 
@@ -61,10 +62,16 @@ export class NewDetailsScreen extends PureComponent {
   }
 
   render () {
+    const { params } = this.props.navigation.state
+    const content = params ? params.content : null
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Text>{moment().format('MM/DD/YYYY h:mm a')}</Text>
+          {content ? (
+            <Text>{moment(new Date(content.timestamp))
+              .format('MM/DD/YYYY h:mm a')}</Text>
+          ) : null}
+
           <Field
             style={{
               borderWidth: 0,

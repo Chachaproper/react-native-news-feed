@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import moment from 'moment'
 import { Text, View, Animated, TouchableOpacity } from 'react-native'
 import Swipeable from 'react-native-swipeable'
 import styles from './NewsItemStyles'
@@ -62,6 +63,8 @@ export default class NewsItem extends PureComponent {
         <TouchableOpacity onPress={onPress} activeOpacity={1}>
           <Animated.View style={rowStyles}>
             <View style={styles.innerContainer}>
+              <Text style={styles.date}>{moment(
+                new Date(news.timestamp)).format('MM/DD/YYYY h:mm a')}</Text>
               <Text style={styles.title}>{news.name}</Text>
               <Text
                 style={styles.text}

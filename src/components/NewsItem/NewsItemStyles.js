@@ -21,13 +21,17 @@ export default StyleSheet.create({
     borderRadius: 2
   },
 
+  date: {
+    color: '#333'
+  },
+
   text: {
     color: '#5f5f5f',
     fontSize: 12
   },
 
   title: {
-    color: '#333',
-    fontSize: 14
+    fontSize: 12,
+    color: '#333'
   }
 })
