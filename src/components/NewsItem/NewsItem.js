@@ -4,7 +4,7 @@ import Swipeable from 'react-native-swipeable'
 import styles from './NewsItemStyles'
 
 const ANIMATION_DURATION = 250
-const ROW_HEIGHT = 140
+const ROW_HEIGHT = 100
 
 export default class NewsItem extends PureComponent {
   animated = new Animated.Value(0)
@@ -62,18 +62,12 @@ export default class NewsItem extends PureComponent {
         <TouchableOpacity onPress={onPress} activeOpacity={1}>
           <Animated.View style={rowStyles}>
             <View style={styles.innerContainer}>
-              <View style={styles.newsBody}>
-                <View style={styles.textContainer}>
-                  <View>
-                    <Text style={styles.title}>{news.name}</Text>
-                    <Text
-                      style={styles.text}
-                      ellipsizeMode='tail'
-                      numberOfLines={3}
-                    >{news.description}</Text>
-                  </View>
-                </View>
-              </View>
+              <Text style={styles.title}>{news.name}</Text>
+              <Text
+                style={styles.text}
+                ellipsizeMode='tail'
+                numberOfLines={3}
+              >{news.description}</Text>
             </View>
           </Animated.View>
         </TouchableOpacity>
