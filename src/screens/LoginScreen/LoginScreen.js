@@ -2,13 +2,14 @@ import React from 'react'
 import {
   View,
   Button,
+  Alert,
   Image,
   Text,
   Keyboard,
   ScrollView
 } from 'react-native'
 import { connect } from 'react-redux'
-import { reduxForm, Field, SubmissionError } from 'redux-form'
+import { reduxForm, Field } from 'redux-form'
 import Layout from '../../components/Layout/Layout'
 import FormInput from '../../components/FormInput/FormInput'
 import storage from '../../storage'
@@ -19,12 +20,7 @@ import styles from './LoginScreenStyles'
 @reduxForm({ form: 'signInTest' })
 export class LoginScreen extends Layout {
   handleSubmit = ({ login, password }) => {
-    if (!password || !login) {
-      throw new SubmissionError({
-        username: 'User does not exist',
-        _error: 'Login failed!'
-      })
-    }
+    if (!password || !login) return
 
     this.props.dispatch(auth({ email: login, password }))
       .then(user => {
@@ -36,6 +32,10 @@ export class LoginScreen extends Layout {
 
         this.props.navigation.navigate('News')
         Keyboard.dismiss()
+      })
+      .catch(err => {
+        return Alert.alert('Auth error', err.message,
+          [{ text: 'Ok' }])
       })
   }
 
