@@ -27,7 +27,6 @@ export class HomeScreen extends Layout {
 
   render () {
     const { notes } = this.props
-    console.log(notes);
 
     return (
       <View style={styles.container}>

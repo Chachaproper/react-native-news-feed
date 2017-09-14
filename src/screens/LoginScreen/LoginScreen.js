@@ -59,14 +59,14 @@ export class LoginScreen extends Layout {
             </View>
             <Text style={styles.title}>Sign in</Text>
             <Field
-              name={'login'}
+              name='login'
               component={FormInput}
               onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
               placeholder='Email'
             />
             <Field
               style={{ marginBottom: 25 }}
-              name={'password'}
+              name='password'
               component={FormInput}
               onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
               type='password'
