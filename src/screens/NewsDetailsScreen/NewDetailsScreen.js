@@ -68,8 +68,10 @@ export class NewDetailsScreen extends PureComponent {
         return newNote
       })
     } else {
-      const newNoteRef = db.refs.notes.push({ timestamp, name, description })
-      db.refs.journals.child(user.uid).child(newNoteRef.key).set(true)
+      db.refs.notes.push({ timestamp, name, description })
+        .then(newNoteRef => {
+          db.refs.journals.child(user.uid).child(newNoteRef.key).set(true)
+        })
     }
 
     navigation.goBack()
