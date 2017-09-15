@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import { isEqual, reduce } from 'lodash'
 import { Button } from 'react-native-elements'
 import { View, Text, ScrollView } from 'react-native'
 import FormInput from '../../components/FormInput/FormInput'
@@ -47,7 +48,23 @@ export class NewDetailsScreen extends PureComponent {
     const timestamp = content ? content.timestamp : new Date().getTime()
 
     if (content && content._id) {
-      db.refs.notes.child(content._id).set({ timestamp, name, description })
+      db.refs.notes.child(content._id).transaction(note => {
+        let newNote = { timestamp, name, description }
+        const original = {
+          name: content.name,
+          description: content.description,
+          timestamp: content.timestamp
+        }
+        if (note && !isEqual(note, original)) {
+          newNote = reduce(newNote, (memo, value, key) => {
+            const isNewValue = value !== content[key] && content[key] ===
+              note[key]
+            memo[key] = isNewValue ? value : note[key]
+            return memo
+          }, {})
+        }
+        return newNote
+      })
     } else {
       const newNoteRef = db.refs.notes.push({ timestamp, name, description })
       db.refs.journals.child(user.uid).child(newNoteRef.key).set(true)
