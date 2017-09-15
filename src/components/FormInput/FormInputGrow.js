@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
-import { ScrollView } from 'react-native'
+import { View } from 'react-native'
 import styles from './FormInputStyles'
 
 export default class FormInputGrow extends PureComponent {
@@ -13,7 +13,7 @@ export default class FormInputGrow extends PureComponent {
     ]
 
     return (
-      <ScrollView style={newStyles}>
+      <View style={newStyles}>
         <AutoGrowingTextInput
           {...inputProps}
           onChangeText={input.onChange}
@@ -25,7 +25,7 @@ export default class FormInputGrow extends PureComponent {
           placeholderTextColor='rgba(0, 0, 0, 0.3)'
           underlineColorAndroid='transparent'
         />
-      </ScrollView>
+      </View>
     )
   }
 }

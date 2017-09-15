@@ -27,8 +27,26 @@ const loginStyles = StyleSheet.create({
   text: {
     flex: 1,
     fontSize: 14
-  }
+  },
 
+  titleWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 15
+  },
+
+  fakeBtnWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+
+  fakeBtn: {
+    height: 20,
+    fontSize: 18,
+    marginLeft: 10
+  }
 })
 
 export default loginStyles

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import moment from 'moment'
 import { isEqual, reduce } from 'lodash'
 import { Button } from 'react-native-elements'
@@ -85,10 +86,21 @@ export class NewDetailsScreen extends PureComponent {
     return (
       <View style={styles.container}>
         <ScrollView>
+
+          <View style={styles.titleWrapper}>
+
           {content ? (
-            <Text>{moment(new Date(content.timestamp))
+            <Text style={{ paddingLeft: 10, paddingRight: 10 }}>{moment(
+              new Date(content.timestamp))
               .format('MM/DD/YYYY h:mm a')}</Text>
           ) : null}
+
+          <View style={styles.fakeBtnWrapper}>
+            <Icon name='camera' style={styles.fakeBtn} />
+            <Icon name='microphone' style={styles.fakeBtn} />
+            <Icon name='paperclip' style={styles.fakeBtn} />
+          </View>
+          </View>
 
           <Field
             style={{

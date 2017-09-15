@@ -8,7 +8,8 @@ const inputStyles = StyleSheet.create({
   inputContainer: {
     borderWidth: 1,
     borderColor: '#cfd7dd',
-    marginTop: 20
+    marginTop: 20,
+    flex: 1
   },
   valid: {
     borderColor: '#53E69D'
