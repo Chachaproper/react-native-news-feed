@@ -88,18 +88,17 @@ export class NewDetailsScreen extends PureComponent {
         <ScrollView>
 
           <View style={styles.titleWrapper}>
+            {content ? (
+              <Text style={{ paddingLeft: 10, paddingRight: 10 }}>{moment(
+                new Date(content.timestamp))
+                .format('MM/DD/YYYY h:mm a')}</Text>
+            ) : null}
 
-          {content ? (
-            <Text style={{ paddingLeft: 10, paddingRight: 10 }}>{moment(
-              new Date(content.timestamp))
-              .format('MM/DD/YYYY h:mm a')}</Text>
-          ) : null}
-
-          <View style={styles.fakeBtnWrapper}>
-            <Icon name='camera' style={styles.fakeBtn} />
-            <Icon name='microphone' style={styles.fakeBtn} />
-            <Icon name='paperclip' style={styles.fakeBtn} />
-          </View>
+            <View style={styles.fakeBtnWrapper}>
+              <Icon name='camera' style={styles.fakeBtn} />
+              <Icon name='microphone' style={styles.fakeBtn} />
+              <Icon name='paperclip' style={styles.fakeBtn} />
+            </View>
           </View>
 
           <Field

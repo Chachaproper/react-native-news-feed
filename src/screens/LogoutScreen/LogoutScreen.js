@@ -11,18 +11,17 @@ import db from '../../storage/firebase'
 export class LogoutScreen extends PureComponent {
   componentDidMount () {
     const { dispatch, navigation } = this.props
-    db.auth.signOut().then(() => {
-      storage.remove('user')
-        .then(() => {
-          dispatch({ type: LOGOUT })
-          const resetAction = NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: LOGIN })]
-          })
-          navigation.dispatch(resetAction)
+    db.auth.signOut()
+    storage.remove('user')
+      .then(() => {
+        dispatch({ type: LOGOUT })
+        const resetAction = NavigationActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: LOGIN })]
         })
-        .catch((err) => console.log('err', err))
-    })
+        navigation.dispatch(resetAction)
+      })
+      .catch((err) => console.log('err', err))
   }
 
   render () { return null }

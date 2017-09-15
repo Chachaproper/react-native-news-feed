@@ -133,6 +133,21 @@ android {
 }
 
 dependencies {
+    // RNFirebase required dependencies
+    compile(project(':react-native-firebase')) {
+      transitive = false
+    }
+    compile "com.google.firebase:firebase-core:11.2.0"
+
+    // If you are receiving Google Play API availability issues, add the following dependency
+    compile "com.google.android.gms:play-services-base:11.2.0"
+
+    // RNFirebase optional dependencies
+    compile "com.google.firebase:firebase-auth:11.2.0"
+    compile "com.google.firebase:firebase-config:11.2.0"
+    compile "com.google.firebase:firebase-crash:11.2.0"
+    compile "com.google.firebase:firebase-database:11.2.0"
+
     compile project(':react-native-vector-icons')
     compile project(':react-native-video')
     compile project(':react-native-document-picker')
@@ -149,3 +164,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'

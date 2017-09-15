@@ -16,7 +16,6 @@ export default class Layout extends PureComponent {
     const { dispatch } = this.props
     storage.user().then(user => {
       const { navigation } = this.props
-      const { navigate } = navigation
       const { routeName } = navigation.state
       if (user) {
         console.log('user', user)
