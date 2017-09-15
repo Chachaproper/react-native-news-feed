@@ -33,6 +33,7 @@
     "moment": "^2.18.1",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.48.3",
+    "react-native-autogrow-textinput": "^4.1.0",
     "react-native-camera": "^0.10.0",
     "react-native-document-picker": "^2.0.0",
     "react-native-elements": "^0.16.0",

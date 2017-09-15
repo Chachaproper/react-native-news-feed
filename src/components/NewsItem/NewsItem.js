@@ -69,7 +69,7 @@ export default class NewsItem extends PureComponent {
               <Text
                 style={styles.text}
                 ellipsizeMode='tail'
-                numberOfLines={3}
+                numberOfLines={2}
               >{news.description}</Text>
             </View>
           </Animated.View>

@@ -5,6 +5,7 @@ import { isEqual, reduce } from 'lodash'
 import { Button } from 'react-native-elements'
 import { View, Text, ScrollView } from 'react-native'
 import FormInput from '../../components/FormInput/FormInput'
+import FormInputGrow from '../../components/FormInput/FormInputGrow'
 import { reduxForm, Field } from 'redux-form'
 import db from '../../storage/firebase'
 import styles from './NewDetailsScreenStyles'
@@ -96,16 +97,15 @@ export class NewDetailsScreen extends PureComponent {
             }}
             name='name'
             component={FormInput}
-            onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
             placeholder='Title'
           />
           <Field
             style={{
-              marginBottom: 25
+              marginBottom: 25,
+              borderColor: 'transparent'
             }}
             name='description'
-            component={FormInput}
-            onSubmitEditing={this.props.handleSubmit(this.handleSubmit)}
+            component={FormInputGrow}
             placeholder='Your content'
           />
         </ScrollView>
