@@ -10,6 +10,7 @@ import FormInputGrow from '../../components/FormInput/FormInputGrow'
 import { reduxForm, Field } from 'redux-form'
 import db from '../../storage/firebase'
 import styles from './NewDetailsScreenStyles'
+import { addNote, updateNote } from '../../redux/actions/data'
 
 @connect((state, ownProps) => {
   const { params } = ownProps.navigation.state
@@ -45,33 +46,20 @@ export class NewDetailsScreen extends PureComponent {
   handleSubmit = ({ name, description }) => {
     if (!name || !description) return
 
-    const { user, navigation } = this.props
+    const { user, navigation, dispatch } = this.props
     const { content } = navigation.state.params
     const timestamp = content ? content.timestamp : new Date().getTime()
 
+    const newNote = { timestamp, name, description }
+
     if (content && content._id) {
-      db.refs.notes.child(content._id).transaction(note => {
-        let newNote = { timestamp, name, description }
-        const original = {
-          name: content.name,
-          description: content.description,
-          timestamp: content.timestamp
-        }
-        if (note && !isEqual(note, original)) {
-          newNote = reduce(newNote, (memo, value, key) => {
-            const isNewValue = value !== content[key] && content[key] ===
-              note[key]
-            memo[key] = isNewValue ? value : note[key]
-            return memo
-          }, {})
-        }
-        return newNote
-      })
+      dispatch(updateNote(content, newNote))
     } else {
-      db.refs.notes.push({ timestamp, name, description })
-        .then(newNoteRef => {
-          db.refs.journals.child(user.uid).child(newNoteRef.key).set(true)
-        })
+      const ref = db().refs.notes.push()
+      const id = ref.key
+      dispatch(addNote({ _id: id, ...newNote }))
+      ref.set(newNote)
+        .then(() => db().refs.journals.child(user.uid).child(id).set(true))
     }
 
     navigation.goBack()

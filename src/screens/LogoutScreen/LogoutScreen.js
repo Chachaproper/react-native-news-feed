@@ -11,7 +11,7 @@ import db from '../../storage/firebase'
 export class LogoutScreen extends PureComponent {
   componentDidMount () {
     const { dispatch, navigation } = this.props
-    db.auth.signOut()
+    db().auth.signOut()
     storage.remove('user')
       .then(() => {
         dispatch({ type: LOGOUT })

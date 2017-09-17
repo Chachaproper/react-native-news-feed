@@ -17,10 +17,14 @@ export class Db {
     this.auth = this.firebase.auth()
     this.db = this.firebase.database()
     this.refs = {
+      connect: this.db.ref('.info/connected'),
       journals: this.db.ref('journals'),
       notes: this.db.ref('notes')
     }
+
+    this.refs.journals.keepSynced(true)
+    this.refs.notes.keepSynced(true)
   }
 }
 
-export default new Db(config)
+export default () => new Db(config)

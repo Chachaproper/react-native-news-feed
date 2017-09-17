@@ -4118,11 +4118,17 @@ redux-form@^7.0.4:
     lodash-es "^4.17.3"
     prop-types "^15.5.9"
 
+redux-recycle@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/redux-recycle/-/redux-recycle-1.4.0.tgz#3507eb7b1b2086a02caea1ff06d4d788fa7bc0b0"
+  dependencies:
+    redux "^3.3.1"
+
 redux-thunk@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
-redux@^3.7.1:
+redux@^3.3.1, redux@^3.7.1:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:

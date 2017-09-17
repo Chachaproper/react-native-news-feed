@@ -5,7 +5,7 @@ export function auth ({ email, password }) {
   return dispatch => {
     return dispatch({
       type: AUTH.START,
-      async: db.auth.signInWithEmailAndPassword(email, password)
+      async: db().auth.signInWithEmailAndPassword(email, password)
     })
   }
 }

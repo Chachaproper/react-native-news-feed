@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 export class HomeScreen extends Layout {
   handleRemoveItem = id => () => {
     const { user } = this.props
-    db.refs.journals.child(user.uid).child(id).remove()
+    db().refs.journals.child(user.uid).child(id).remove()
   }
 
   handleOpenNote = content => {
